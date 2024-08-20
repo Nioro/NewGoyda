@@ -60,7 +60,7 @@ public class PlayerStats : MonoBehaviour
             }
             if(hp < 0.01)
             {
-                SceneManager.LoadScene("StartScene");
+                Death();
             }
             yield return new WaitForSeconds(tick);
         }
@@ -76,5 +76,10 @@ public class PlayerStats : MonoBehaviour
             yield return new WaitForSeconds(tick);
         }
     }
-    
+    void Death()
+    {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+        SceneManager.LoadScene("StartScene");
+    }
 }
