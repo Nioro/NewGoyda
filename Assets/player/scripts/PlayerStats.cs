@@ -41,7 +41,7 @@ public class PlayerStats : MonoBehaviour
             if (endurance >= 0.1 && hunger < 1 && Input.GetKey(KeyCode.LeftShift))
             {
                 endurance -= 0.05f;
-                hunger += 0.006f;
+                hunger += 0.004f;
             }
             else if(endurance < 1 && hunger <= 0.8 && !Input.GetKey(KeyCode.LeftShift))
             {
@@ -71,7 +71,7 @@ public class PlayerStats : MonoBehaviour
         {
             if(hunger < 1)
             {
-                hunger += 0.004f;
+                hunger += 0.002f;
             }
             yield return new WaitForSeconds(tick);
         }
