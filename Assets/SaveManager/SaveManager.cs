@@ -3,6 +3,7 @@ using UnityEngine;
 using System.IO;
 using UnityEngine.SceneManagement;
 using Unity.VisualScripting;
+using UnityEngine.UI;
 
 public class SaveManager : MonoBehaviour
 {
@@ -37,11 +38,18 @@ public class SaveManager : MonoBehaviour
     }
 
     [System.Serializable]
+    public struct InventoryHotSlot
+    {
+        public string itemName;
+    }
+
+    [System.Serializable]
     internal class GameData
     {
         public Vector3 playerTransformPosition;
         public List<ItemInfo> itemInfos = new List<ItemInfo>();
         public List<InventoryItem> inventoryItems = new List<InventoryItem>();
+        public InventoryHotSlot slot;
         public float playerHP;
         public float playerStamina;
         public float playerHunger;
@@ -51,7 +59,7 @@ public class SaveManager : MonoBehaviour
     {
         GameData gameData = new();
         gameData.playerTransformPosition = GameObject.FindWithTag("Player").transform.position;
-        
+
         foreach(var i in inventory.inventoryItems)
         {
             InventoryItem inventoryItems;
@@ -66,9 +74,9 @@ public class SaveManager : MonoBehaviour
             itemInfo.title = i.GetComponent<Item_>().item.title;
             gameData.itemInfos.Add(itemInfo);
         };
-        foreach (var i in gameData.inventoryItems)
+        if (inventory.holdItem != null)
         {
-            print($"{i.itemName} {i.itemCount}");
+            gameData.slot.itemName = inventory.holdItem.GetComponent<Item_>().item.title;
         }
         gameData.playerHP = stats.hp;
         gameData.playerStamina = stats.endurance;
@@ -106,5 +114,17 @@ public class SaveManager : MonoBehaviour
         }
         inventory.inventoryItems = aboba;
         inventory.UpdateItems();
+        
+        foreach (var i in inventory.hotSlotObjects)
+        {
+            if (i.GetComponent<Item_>().item.name.ToLower() == gameData.slot.itemName)
+            {
+                inventory.choosenItem = i.GetComponent<Item_>().item;
+                inventory.holdItem = i;
+                inventory.holdItem.SetActive(true);
+                inventory.UpdateHotSlot();
+                break;    
+            }
+        }
     }
 }

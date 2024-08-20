@@ -8,7 +8,7 @@ public class Inventory : MonoBehaviour
 {
     public Dictionary<Items, int> inventoryItems = new Dictionary<Items, int>();
     [SerializeField] public List<GameObject> gameObjects = new List<GameObject>();
-    [SerializeField] private List<GameObject> hotSlotObjects = new List<GameObject>();
+    [SerializeField] internal List<GameObject> hotSlotObjects = new List<GameObject>();
     public GameObject button;
     public GameObject pistol;
     public GameObject weapons;
@@ -19,7 +19,7 @@ public class Inventory : MonoBehaviour
     [SerializeField] TextMeshProUGUI hint;
     private GameObject target;
     private PlayerStats playerStats;
-    private Items choosenItem;
+    internal Items choosenItem;
     [SerializeField] internal GameObject inventoryPanel;
     private void Start()
     {
@@ -58,13 +58,21 @@ public class Inventory : MonoBehaviour
                     break;
                 }
             }
-            GameObject btn = Instantiate(hotButton);
-            btn.transform.SetParent(hotInventory.transform);
-            btn.GetComponent<Image>().sprite = choosenItem._sprite;
-            btn.GetComponent<Button>().onClick.AddListener(() => { DeleteHotSlot(); });
-            isHolding = true;
-            playerStats.canMine = holdItem.GetComponent<Item_>().item.isForMining;
-            playerStats.canCut = holdItem.GetComponent<Item_>().item.isForCutting;
+            UpdateHotSlot();
+        }
+        else if (choosenItem.isHotSlotable && isHolding)
+        {
+            DeleteHotSlot();
+            foreach(var i in hotSlotObjects)
+            {
+                if(i.GetComponent<Item_>().item.isHotSlotable && i.GetComponent<Item_>().item.title == choosenItem.title)
+                {
+                    holdItem = i;
+                    holdItem.SetActive(true);
+                    break;
+                }
+            }
+            UpdateHotSlot();
         }
     }
     public void DeleteHotSlot()
@@ -90,7 +98,6 @@ public class Inventory : MonoBehaviour
                 Instantiate(i, target.transform.position, i.transform.rotation);
             }
         }
-        print("point");
         DeleteItem();
         UpdateItems();  
     }
@@ -147,6 +154,16 @@ public class Inventory : MonoBehaviour
             btn.GetComponentInChildren<TextMeshProUGUI>().text = entry.Value.ToString();
             btn.GetComponent<Button>().onClick.AddListener(() => { ChooseItem(entry.Key); });
         }
+    }
+    public void UpdateHotSlot()
+    {
+        GameObject btn = Instantiate(hotButton);
+        btn.transform.SetParent(hotInventory.transform);
+        btn.GetComponent<Image>().sprite = choosenItem._sprite;
+        btn.GetComponent<Button>().onClick.AddListener(() => { DeleteHotSlot(); });
+        isHolding = true;
+        playerStats.canMine = holdItem.GetComponent<Item_>().item.isForMining;
+        playerStats.canCut = holdItem.GetComponent<Item_>().item.isForCutting;
     }
     public void UseItem()
     {

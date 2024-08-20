@@ -40,7 +40,6 @@ public class CharacterAnimation : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Mouse0) && inventory.holdItem.activeSelf && !cooldown && !controller.isFreezed)
             {
-                print("baka");
                 StartCoroutine(Attacking());
             }
         }
