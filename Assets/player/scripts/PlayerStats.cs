@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlayerStats : MonoBehaviour
@@ -40,7 +41,7 @@ public class PlayerStats : MonoBehaviour
             if (endurance >= 0.1 && hunger < 1 && Input.GetKey(KeyCode.LeftShift))
             {
                 endurance -= 0.05f;
-                hunger += 0.005f;
+                hunger += 0.008f;
             }
             else if(endurance < 1 && hunger <= 0.8 && !Input.GetKey(KeyCode.LeftShift))
             {
@@ -53,9 +54,13 @@ public class PlayerStats : MonoBehaviour
     {
         while (true)
         {
-            if(hp >= 0.4 && hunger >= 0.9)
+            if(hp != 0 && hunger >= 0.9)
             {
                 hp -= 0.05f;
+            }
+            if(hp < 0.01)
+            {
+                SceneManager.LoadScene("StartScene");
             }
             yield return new WaitForSeconds(tick);
         }
@@ -66,7 +71,7 @@ public class PlayerStats : MonoBehaviour
         {
             if(hunger < 1)
             {
-                hunger += 0.002f;
+                hunger += 0.005f;
             }
             yield return new WaitForSeconds(tick);
         }
