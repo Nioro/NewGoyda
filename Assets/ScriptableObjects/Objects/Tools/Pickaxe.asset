@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b53020a4aed853846a24a262a9a6468e, type: 3}
+  m_Name: Pickaxe
+  m_EditorClassIdentifier: 
+  _sprite: {fileID: 21300000, guid: f79c546d5d714ab46a3361e4f97a887c, type: 3}
+  title: pickaxe
+  description: Good for mining stone
+  heal: 0
+  value: 1
+  damage: 0.3
+  isUsable: 0
+  isHotSlotable: 1
+  isForMining: 1
+  isForCutting: 0
+  itemType: 6

@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85192d2c022c1b0498c7e8c768bba635, type: 3}
+  m_Name: Pistol
+  m_EditorClassIdentifier: 
+  craftType: 1
+  finalCraft: {fileID: 11400000, guid: fe18fa2685c79e14c9c510bc738681e6, type: 2}
+  craftAmount: 1
+  craftTime: 0
+  craftResources:
+  - craftObject: {fileID: 11400000, guid: 1b65fa7bf9390254fa8eec453dada058, type: 2}
+    craftObjectAmount: 9
+  - craftObject: {fileID: 11400000, guid: 6f5b2078b8e828a439060219ebaeb2af, type: 2}
+    craftObjectAmount: 12
+  - craftObject: {fileID: 11400000, guid: 2787dd1c54fadb94f891ce6498f6db81, type: 2}
+    craftObjectAmount: 5
+  - craftObject: {fileID: 11400000, guid: 06ddc20e40d25b648a08a4bc5ae5abbf, type: 2}
+    craftObjectAmount: 1
+  - craftObject: {fileID: 11400000, guid: 4efc4da90fdadb34ea3099ad4469a15c, type: 2}
+    craftObjectAmount: 20

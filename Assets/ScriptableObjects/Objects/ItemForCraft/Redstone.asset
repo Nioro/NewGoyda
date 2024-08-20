@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b53020a4aed853846a24a262a9a6468e, type: 3}
+  m_Name: Redstone
+  m_EditorClassIdentifier: 
+  _sprite: {fileID: 21300000, guid: a2858c351a3603f4986d9b96140a7828, type: 3}
+  title: redstone
+  description: Your last chance
+  heal: 0
+  value: 1
+  damage: 1
+  isUsable: 0
+  isHotSlotable: 0
+  isForMining: 0
+  isForCutting: 0
+  itemType: 7
