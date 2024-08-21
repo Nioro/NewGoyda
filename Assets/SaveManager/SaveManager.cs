@@ -54,6 +54,8 @@ public class SaveManager : MonoBehaviour
         public float playerStamina;
         public float playerHunger;
         public float timeOfDay;
+        public bool canMine;
+        public bool canCut;
     }
     public void Save()
     {
@@ -81,6 +83,8 @@ public class SaveManager : MonoBehaviour
         gameData.playerHP = stats.hp;
         gameData.playerStamina = stats.endurance;
         gameData.playerHunger = stats.hunger;
+        gameData.canCut = stats.canCut;
+        gameData.canMine = stats.canMine;
         gameData.timeOfDay = 0;
         File.WriteAllText(
             savePath + "/gameSave.json",
@@ -95,6 +99,8 @@ public class SaveManager : MonoBehaviour
         stats.hp = gameData.playerHP;
         stats.endurance = gameData.playerStamina;
         stats.hunger = gameData.playerHunger;
+        stats.canCut = gameData.canCut;
+        stats.canMine = gameData.canMine;
 
         player.transform.position = gameData.playerTransformPosition;
 

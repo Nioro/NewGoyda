@@ -28,7 +28,7 @@ public class Inventory : MonoBehaviour
     }
     public void AddItem(Items item)
     {
-        if(inventoryItems.Count < 10)
+        if(inventoryItems.Count < 9 || inventoryItems.ContainsKey(item))
         {
             if (inventoryItems.ContainsKey(item))
             {

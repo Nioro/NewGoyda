@@ -31,32 +31,33 @@ public class Crafting : MonoBehaviour
     }
     public void Craft(CraftSO itemCraft)
     {
-       int count = 0;
-       foreach(var CraftItem in itemCraft.craftResources)
-       {
-            if(inventory.inventoryItems.ContainsKey(CraftItem.craftObject))
-            {
-                int outer;
-                inventory.inventoryItems.TryGetValue(CraftItem.craftObject, out outer);
-                if(outer >= CraftItem.craftObjectAmount)
+        if (inventory.inventoryItems.Count < 9 || inventory.inventoryItems.ContainsKey(itemCraft.finalCraft))
+        {
+            int count = 0;
+        foreach(var CraftItem in itemCraft.craftResources)
+        {
+                if(inventory.inventoryItems.ContainsKey(CraftItem.craftObject))
                 {
-                    count++;
+                    int outer;
+                    inventory.inventoryItems.TryGetValue(CraftItem.craftObject, out outer);
+                    if(outer >= CraftItem.craftObjectAmount)
+                    {
+                        count++;
+                    }
                 }
-            }
-       }
-       if(count == itemCraft.craftResources.Count)
-       {
-            foreach (var CraftItem in itemCraft.craftResources)
-            {
-                inventory.CraftDelete(CraftItem.craftObject, CraftItem.craftObjectAmount);
-            }
-            inventory.AddItem(itemCraft.finalCraft);
-
-       }
-       else
-       {
-            return;
-       }
+        }
+        if(count == itemCraft.craftResources.Count)
+        {
+                foreach (var CraftItem in itemCraft.craftResources)
+                {
+                    inventory.CraftDelete(CraftItem.craftObject, CraftItem.craftObjectAmount);
+                }
+                inventory.AddItem(itemCraft.finalCraft);
+        }
+        else
+        {
+                return;
+        }
+        }  
     }
-    
 }

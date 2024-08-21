@@ -36,7 +36,10 @@ public class InventoryRay : MonoBehaviour
                     previousOutline.OutlineWidth = 0;
                     keyHint.text = "";
                 }
-                if (hit.collider.gameObject.GetComponent<Item_>() && Input.GetKeyDown(KeyCode.E))
+                if (hit.collider.gameObject.GetComponent<Item_>() 
+                    && Input.GetKeyDown(KeyCode.E) 
+                    && (inventory.inventoryItems.Count < 9 
+                    || inventory.inventoryItems.ContainsKey(hit.collider.gameObject.GetComponent<Item_>().item)))
                 {
                     inventory.AddItem(hit.collider.gameObject.GetComponent<Item_>().item);
                     Destroy(hit.collider.gameObject);
